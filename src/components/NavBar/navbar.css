@@ -1,0 +1,12 @@
+.menu{
+    display: flex;
+    justify-content: space-around;
+    background-color: pink;
+    padding-top: 5px;
+}
+
+.link{
+    color: purple;
+    margin: 1fr;
+}
+

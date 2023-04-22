@@ -1,11 +1,12 @@
 import React from "react";
-import cart from "./assets/cart.svg"
 import "./cart.css"
+import {BiCart} from 'react-icons/bi'
+
 
 const CartWidget = () => {
     return (
-        <div>
-            <img src={cart} alt="cart-widget"/>
+        <div className="cart">
+            <BiCart/>
             0
         </div> 
     )

@@ -1,17 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CartWidget from "../CartWidget/CartWidget";
+import './navbar.css'
 
 const NavBar = () => {
     return (
-        <nav>
-            <h2>Destino</h2>
-            <div>
-                <button>Signos</button>
-                <button>Numeros</button>
-                <button>Cartas</button>
+            <div className="menu">
+                <Link className='link' to="/">Inicio</Link>
+                <Link className='link' to='/productos/signos'>Signos</Link>
+                <Link className='link' to='/counter'>Contador</Link>
+                <Link className='link' to='/cart'><CartWidget/></Link>
             </div>
-            <CartWidget/>
-        </nav>
     )
 }
 
