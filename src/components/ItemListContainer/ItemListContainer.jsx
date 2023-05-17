@@ -2,10 +2,11 @@ import React from "react";
 import { useState } from "react";
 import './ItemListContainer.css';
 import { useEffect } from "react";
-import {pedirProductos} from '../../helpers/pedirProductos';
+/*import {pedirProductos} from '../../helpers/pedirProductos';*/
 import { ItemList } from "../ItemList/ItemList";
 import {FaSpinner} from 'react-icons/fa'
 import { useParams } from "react-router-dom";
+import {getFirestore} from '../../firebase/config'
 
 const ItemListContainer = ({greeting}) => {
 
@@ -17,21 +18,19 @@ const ItemListContainer = ({greeting}) => {
 
     useEffect(() => {
 
-        setLoading(true)
-        pedirProductos()
-        .then((res) =>{
+      const db =getFirestore();
 
-            if(categoryId){
-              setItems(res.filter(prod => prod.category === categoryId)  )
-            }else{
-              setItems(res)
-            }
+      const productos = db.collection('productos')
 
-          })
-            .catch((error) => console.log(error))
-            .finally(() => {setLoading(false)})
+      productos.get()
+        .then ((res) => {
+          const newItem = res.docs.map((doc) => {
+            return {id: doc.id, ...doc.data()}
+        })
+        console.table(newItem)
 
-    },[categoryId])
+        }) 
+      },[categoryId])
 
     return (
         <>
